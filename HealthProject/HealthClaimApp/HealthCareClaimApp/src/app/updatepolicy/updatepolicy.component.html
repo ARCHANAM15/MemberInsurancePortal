@@ -1,0 +1,87 @@
+<div class=row style="padding-top:30px ;">
+    <div class="col-4 m-auto">
+        <div class="card">
+            <div class="card-title">
+                <br>
+                <h5 style="color: black;padding-left: 20px; text-align: center;">Update Policy</h5>
+            </div>
+            <div class=" card-body">
+                <div class="form-group col-12">
+                    <label>MemberId:</label>
+                    <p>{{mid}}</p>
+                    <label>PolicyId:</label>
+                    <p>{{pid}}</p>
+                </div>
+
+                <div class="form-group col-12">
+                    <label>Policy Type</label>
+                    <select class="form-control" [(ngModel)]="poicyupdateModel.policyType"
+                        placeholder="Select PolicyType" aria-label="Default select example">
+                        <option selected>Select PolicyType</option>
+                        <option value="Life Insurance">Life Insurance</option>
+                        <option value="Car Insurance">Car Insurance</option>
+                        <option value="Health Insurance">Health Insurance</option>
+                        <option value="Property Insurance">Property Insurance</option>
+                    </select>
+                </div>
+
+
+
+                <div class="form-group col-12">
+                    <label>Premium Amount</label>
+                    <input type="text" [(ngModel)]="poicyupdateModel.premiumAmount" class="form-control">
+                </div>
+
+                <div class="form-group col-12">
+                    <label>Effective Date</label>
+                    <input type="date" [(ngModel)]="poicyupdateModel.effectiveDate" class="form-control">
+                </div>
+
+                <div class="form-group col-12">
+                    <label>Remark</label>
+                    <textarea [(ngModel)]="poicyupdateModel.remark" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group col-12">
+                    <label>Policy Status</label>
+                    <select class="form-select" [(ngModel)]="poicyupdateModel.statusId" placeholder="Select Status"
+                        aria-label="Default select example">
+                        <option selected>Policy Status</option>
+                        <option *ngFor="let phy of policystatuslist" value={{phy.statusId}}>
+                            {{phy.statusDescription}}
+                        </option>
+                    </select>
+                </div>
+                <br>
+                <div class="form-group col-12">
+                    <div class="row">
+                        <div class="container">
+
+                            <button mat-raised-button type="button" class="btn btn-outline btn-primary"
+                                style="width: 100%;" (click)="updatePolicy()">Update</button>
+                            <p class="small fw-bold mt-2 pt-1 mb-0"><a class="link-primary"
+                                    (click)="backToSearch()">Back to Search</a>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div *ngIf="alert" class="col-md-4 alert alert-primary" role="alert">&nbsp;
+        Policy has been updated successfully!
+        &nbsp;&nbsp;&nbsp; <button type="button" (click)="closealert()" style="width:1px;" class="btn-close"
+            data-bs-dismiss="alert" aria-label="Close"></button>
+
+    </div>
+</div>

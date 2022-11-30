@@ -1,0 +1,148 @@
+<div class=row style="padding-top:40px ;">
+    <!--<div class="col-4">
+        <label>User Name:</label><label>{{UserModel.userName}}</label>
+        <label>User Type:</label><label>{{UserModel.userType}}</label>
+
+    </div>-->
+    <div class="col-6 m-auto">
+        <div class="card">
+            <div class="card-title">
+                <h5 style="color: black;text-align: center;">Member Search</h5>
+            </div>
+
+            <div class="card-body">
+                <div class="form-group row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-2"><label>Member Id</label></div>
+                    <div class="col-sm-5">
+                        <input type="text" [(ngModel)]="searchDataModel.memberId" class="form-control">
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <div class="col-sm-2"><label>Firstname</label></div>
+                    <div class=col-sm-4>
+                        <input type="text" [(ngModel)]="searchDataModel.firstName" class="form-control"
+                            placeholder="Enter First Name">
+                    </div>
+
+                    <div class="col-sm-2">Lastname</div>
+                    <div class=col-sm-4>
+                        <input type="text" [(ngModel)]="searchDataModel.lastName" class="form-control"
+                            placeholder="Enter First Name">
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <div class="col-sm-2"><label>PolicyStatus</label></div>
+                    <div class=col-sm-4>
+                        <select class="form-select" [(ngModel)]="searchDataModel.statusDescription"
+                            placeholder="Select State" aria-label="Default select example">
+                            <option selected>Policy Status</option>
+                            <option *ngFor="let phy of policystatuslist">
+                                {{phy.statusDescription}}
+                            </option>
+                         </select>
+                    </div>
+
+                    <div class="col-sm-2">PolicyId</div>
+                    <div class=col-sm-4>
+                        <input type="text" [(ngModel)]="searchDataModel.PolicyId" class="form-control">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <button type="button" class="btn btn-outline btn-primary" style="width: 30%;" (click)='searchMember()'>Search</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+
+
+<div class="container">
+    <div class="card">
+        <br>
+        <div class="row">
+           <div class="col-md-8"></div>
+           <div class="col-md-4">
+               
+            <div *ngIf="this.policyId>0">
+                <a  style="width: 125px;"  class="btn btn-primary" (click)="updatePolicy()">Update Policy</a>
+            </div>
+            
+            <div *ngIf="this.policyId==0 && this.Currentrole=='Admin'">
+            <a  style="width: 125px;"  class="btn btn-primary" (click)="AddPolicy()">Add Policy</a>&nbsp;
+             </div>
+             <div *ngIf="this.Currentrole=='Member'">
+                <a  style="width: 125px;"  class="btn btn-primary"  (click)="AddPolicyByMember()">Add Policy</a>&nbsp;
+                 </div>
+           </div>
+            
+        
+        <div class="col-11 m-auto">
+        <br>
+                <table class="table table-bordered ">
+                    <thead style="background-color:black">
+                        <tr>
+                            <td style="color: white;">PolicyId</td>
+                            <td style="color: white;">MemberId</td>
+                            <td style="color: white;">Firstname</td>
+                            <td style="color: white;">Lastname</td>
+                            
+                            <td style="color: white;">PolicyType</td>
+                            <td style="color: white;">PolicyStatus</td>
+                            <td style="color: white;">Premium Amount</td>
+                            <td style="color: white;">Submitted Date</td>
+                           
+                            <td style="color: white;" *ngIf="this.Currentrole=='Admin'">Select Member</td>
+                            <td style="color: white;"  *ngIf="this.Currentrole=='Admin'">Select Policy</td>
+                            <!--<td style="color: white;">Update Policy</td>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of memberDataList">
+                            <td>{{item.policyId}}</td>
+                            <td>{{item.id}}</td>
+                            <td>{{item.firstName}}</td>
+                            <td>{{item.lastName}}</td>
+                           
+                            <td>{{item.policyType==""?"":item.policyType}}</td>
+                            <td>{{item.statusDescription==""?"":item.statusDescription}}</td>
+                            <td>{{item.premiumAmout==0?"":item.premiumAmout}}</td>
+                            <td>{{item.submittedDate==""?"":item.submittedDate}}</td>
+                           
+                                <td  *ngIf="this.Currentrole=='Admin'" ><input type="checkbox" (change)="checkMemberValue(item.id,item.policyId)"></td>
+                          
+                            
+                          
+
+
+                            <div *ngIf="item.policyId>0;else other_content">
+                                <td  *ngIf="this.Currentrole=='Admin'"> 
+                                    <input type="checkbox"  (change)="checkboxValue(item.policyId,item.id)">
+                                     </td> 
+                            </div>
+                            
+                            <ng-template #other_content>
+                                <td>
+                                <input type="checkbox" disabled (change)="checkboxValue(item.policyId,item.id)">
+                            </td>
+                            </ng-template>
+                           
+                          
+                        </tr>
+                        <tr *ngIf="memberDataList.length==0">
+                            <td colspan="10" style="text-align: center;">No Records found!</td>
+                        </tr>
+                    </tbody>
+                </table>
+           
+        </div>
+        
+    </div>
+</div>

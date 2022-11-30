@@ -1,0 +1,118 @@
+<div class=row style="padding-top:40px ;">
+    <div class="col-10 m-auto">
+        <div class="card">
+            <div class="card-title">
+                <h5 style="text-align: center;padding-top:3px">Member Registration</h5>
+            </div>
+
+            <div class="card-body">
+                <form [formGroup]="memberRegModel.formmemberGroup">
+                    <div class="form-group row">
+                        <div class="col-sm-2"><label>Firstname</label></div>
+                        <div class=col-sm-4>
+                            <input type="text" [(ngModel)]="memberRegModel.firstName" formControlName="firstNameControl"
+                                class="form-control" placeholder="Enter First Name">
+                            <span class="validspan" *ngIf="!memberRegModel.formmemberGroup.controls['firstNameControl'].valid && 
+                        memberRegModel.formmemberGroup.controls['firstNameControl']?.touched" style="color: red;">
+                                Please enter a
+                                valid first name.</span>
+                        </div>
+
+
+                        <div class="col-sm-2">
+                            <label>Lastname</label>
+                        </div>
+                        <div class=col-sm-4>
+                            <input type="text" [(ngModel)]="memberRegModel.lastName" formControlName="lastNameControl"
+                                class="form-control" placeholder="Enter Last Name">
+                            <span class="validspan" *ngIf="!memberRegModel.formmemberGroup.controls['lastNameControl'].valid && 
+                        memberRegModel.formmemberGroup.controls['lastNameControl']?.touched" style="color: red;">
+                                Please enter a
+                                valid last name.</span>
+                        </div>
+                    </div>
+
+
+                    <br />
+
+                    <div class="row">
+                        <div class="col-sm-2"><label>Address</label></div>
+                        <div class=col-sm-4>
+                            <textarea class="form-control" [(ngModel)]="memberRegModel.address"
+                                placeholder="Enter Address" formControlName="addressControl"></textarea>
+                            <span class="validspan" *ngIf="!memberRegModel.formmemberGroup.controls['addressControl'].valid && 
+                        memberRegModel.formmemberGroup.controls['addressControl']?.touched" style="color: red;"> Please
+                                enter a
+                                valid address.</span>
+                        </div>
+
+                        <div class="col-sm-2"><label>Email</label></div>
+                        <div class=col-sm-4>
+                            <input type="email" [(ngModel)]="memberRegModel.email" class="form-control"
+                                placeholder="Enter Email" formControlName="emailControl">
+                            <span class="validspan" *ngIf="!memberRegModel.formmemberGroup.controls['emailControl'].valid && 
+                      memberRegModel.formmemberGroup.controls['emailControl']?.touched" style="color: red;"> Please
+                                enter a
+                                valid email.</span>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-sm-2"><label>State</label></div>
+                        <div class=col-sm-4>
+                            <select [(ngModel)]="memberRegModel.state" class="form-control"
+                                placeholder="Select UserType" aria-label="Default select example"
+                                formControlName="stateControl" style="overflow-y: scroll;">
+                                <option selected>Select State</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Maharashtra">Maharashtra</option>
+
+
+                            </select>
+                            <span class="validspan" *ngIf="!memberRegModel.formmemberGroup.controls['stateControl'].valid && 
+                      memberRegModel.formmemberGroup.controls['stateControl']?.touched" style="color: red;"> Please
+                                enter a
+                                valid state.</span>
+                        </div>
+
+                        <div class="col-sm-2"><label>DateOfBirth</label></div>
+                        <div class=col-sm-4>
+                            <input [(ngModel)]="memberRegModel.DOB" class="form-control"
+                                placeholder="Enter Date Of Birth" type="date" formControlName="DOBControl">
+                            <span class="validspan" *ngIf="!memberRegModel.formmemberGroup.controls['DOBControl'].valid && 
+                        memberRegModel.formmemberGroup.controls['DOBControl']?.touched" style="color: red;"> Please
+                                enter a
+                                valid DOB.</span>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <button type="button" class="btn btn-outline btn-primary" (click)="Addmember($event)"
+                            style="width: 30%;">Register</button>
+
+                        <p class="small fw-bold mt-2 pt-1 mb-0">Registered Users: <a [routerLink]="['']" class="link-primary">Login</a>
+                        </p>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div *ngIf="alert" class="col-md-4 alert alert-primary" role="alert">&nbsp;
+                            Account has been created successfully!
+                            <button type="button" style="width:1px;" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>

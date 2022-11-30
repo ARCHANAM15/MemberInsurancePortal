@@ -1,0 +1,60 @@
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+       
+        <a class="navbar-brand" href="#"> INSURANCE MEMBER PORTAL</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <form class="d-flex" role="LogInform">
+          <ul class="navbar-nav me-auto my-4 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                     
+                      <li class="nav-item">
+                         <!--- <a class="nav-link active"  aria-current="page" [routerLink]="['login']">Login</a>
+                         
+                      </li>
+                      
+                      <li class="nav-item">
+                          <a class="nav-link" style="cursor:pointer"*ngIf="LoggedIn(true)" (click)="Logout()">Logout</a>
+                      </li>
+                  </ul>
+        </form>
+    </div>
+       
+    </nav> --> 
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:rgb(70, 121, 180);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"> INSURANCE MEMBER PORTAL</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarScroll" style="padding-left:788px;">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+               
+                  <li class="nav-item">
+                    <a class="nav-link" *ngIf="LoggedIn(false)"  [routerLink]="['login']">Login</a>
+                  </li>
+                  <li class="nav-item">
+
+                </li>   
+                <li class="nav-item dropdown" *ngIf="LoggedIn(true)" (click)="userMasterData()">
+                    <a class="nav-link dropdown-toggle" *ngIf="LoggedIn(true)" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     Profile
+                    </a>
+                    <ul class="dropdown-menu">
+                     
+                      <li><a class="nav-link" style="cursor:pointer;color: rgb(24, 27, 32);">Name:{{userdataName}}</a></li>
+                      <li><a class="nav-link" style="cursor:pointer;color: rgb(24, 27, 32);">LoggedIn:{{userType}}</a></li>
+                      <li><a class="nav-link" style="cursor:pointer;color: rgb(24, 27, 32);" *ngIf="LoggedIn(true)"   (click)="Logout()" >Logout</a></li>
+                     
+                    </ul>
+                  </li>  
+                </ul>  
+                  
+              </div>
+        </div>
+           
+        </nav>  
+
+<router-outlet></router-outlet>

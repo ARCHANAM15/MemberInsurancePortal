@@ -1,0 +1,89 @@
+<div class=row style="padding-top:30px ;">
+    <div class="col-4 m-auto">
+        <div class="card">
+            <div class="card-title">
+                <br>
+                <h5 style="color: black;padding-left: 20px; text-align: center;">User Registration</h5>
+            </div>
+
+            <div class="card-body">
+                <form [formGroup]="userDataModel.formUserGroup">
+
+                    <div class="form-group col-12">
+                        <label>Username</label>
+                        <input [(ngModel)]="userDataModel.userName" formControlName="userNameControl"
+                            class="form-control" type="text" name="userName">
+
+                    </div>
+                    <span class="validspan" *ngIf="!userDataModel.formUserGroup.controls['userNameControl'].valid && 
+                userDataModel.formUserGroup.controls['userNameControl']?.touched" style="color: red;"> Please enter a
+                        valid userName.</span>
+                        <div class="form-group col-12">
+                            <label>email</label>
+                            <input [(ngModel)]="userDataModel.email" formControlName="emailControl" class="form-control"
+                                type="text" name="userName" (keydown)="emailValidation()">
+    
+                        </div>
+                        
+                        
+
+                    <div class="form-group col-12">
+                        <label>Select Usertype</label>
+                        <select [(ngModel)]="userDataModel.usertype" formControlName="usertypeControl"
+                            class="form-control" placeholder="Select UserType" aria-label="Default select example">
+                            <option selected>Select UserType</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Member">Member</option>
+                        </select>
+                    </div>
+                    <span class="validspan" *ngIf="!userDataModel.formUserGroup.controls['usertypeControl'].valid && 
+                userDataModel.formUserGroup.controls['usertypeControl']?.touched" style="color: red;"> Select
+                        Usertype.</span>
+
+                    <div class="form-group col-12">
+                        <label>Password</label>
+                        <input [(ngModel)]="userDataModel.password" class="form-control" type="password"
+                            formControlName="passwordControl">
+                    </div>
+                    <span class="validspan" *ngIf="!userDataModel.formUserGroup.controls['passwordControl'].valid && 
+                userDataModel.formUserGroup.controls['passwordControl']?.touched" style="color: red;"> Password must conatin atleast one Special charater,
+                one Upper case letter 
+                and one Numeric Charater.
+                        .</span>
+
+                    <div class="form-group col-12">
+                        <label>Confirm Password</label>
+                        <input [(ngModel)]="userDataModel.conPassword" class="form-control" type="password" formControlName="conpasswordControl">
+                    </div>
+                    <span class="validspan" *ngIf="!userDataModel.formUserGroup.controls['conpasswordControl'].valid && 
+                    userDataModel.formUserGroup.controls['conpasswordControl']?.touched" style="color: red;"> Please enter
+                            Confirm password.</span>
+                    <br>
+
+                    <div class="form-group col-12">
+                        <div *ngIf="isEmailValid;else emailvalid_content" role="alert" class="col-md-12 alert alert-danger">
+                            User already registered.
+                            <button type="button" style="width:1px;" class="btn-close" data-bs-dismiss="alert"
+                            aria-label="Close" ></button>
+                        </div>
+                        
+                        <ng-template #emailvalid_content>
+                            <span class="validspan" *ngIf="!userDataModel.formUserGroup.controls['emailControl'].valid && 
+                            userDataModel.formUserGroup.controls['emailControl']?.touched" style="color: red;"> Please enter a
+                                    valid Eamil.</span>
+                        </ng-template>
+                        <div class="row">
+                            <div class="container">
+                                <button mat-raised-button type="button" class="btn btn-outline btn-primary"
+                                [disabled]="!(userDataModel.formUserGroup.valid)"     style="width: 100%;" (click)="registerUser()">Sign up</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
